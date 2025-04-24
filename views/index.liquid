@@ -1,1 +1,57 @@
 <!-- comment -->
+
+{% render 'partials/head.liquid' %}
+
+<h1>Oncollaboration</h1>
+
+<section>
+    <div class="search-bar">
+      <input type="text" placeholder="Search here..." />
+      <button class="button">Search</button>
+    </div>
+
+    <ul class="category-list">
+        {% for category in categories %}
+            <li class="category-element">{{ category.name }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section class="home">
+    <section class="about-us">
+        <h2>About us</h2>
+            <img class="home-logo-avl" src="/assets/AVL-Logo-white.svg" alt="Antoni van Leeuwenhoek"  >
+            <img class="home-logo-sar" src="/assets/kemenkessardjito.png" alt="Sardjito" >
+
+            <p>
+                Oncollaboration serves as a space where radiologists from both Indonesia and the Netherlands can come together to share their expertise and discuss recent developments in their medical field.
+            </p>
+    </section>
+
+    <section class="webinars-index">
+        <h2>Webinars</h2>
+        <p>
+            Take a look at one of the many <a href="/webinars"> Webinars!</a>
+        </p>
+        <!--  LAATSTE WEBINAR TONEN  -->
+    </section>
+
+    <section class="contourings-index">
+        <h2>Contourings</h2>
+        <p>
+            Take a look at one of the many Contourings!
+        </p>
+        <!--  LAATSTE CONTOURING TONEN  -->
+    </section>
+
+    <section class="articles-index">
+        <h2>Articles</h2>
+        <p>
+            Take a look at one of the many Articles!
+        </p>
+         <!-- LAATSTE ARTICLE TONEN -->
+    </section>
+</section>
+
+
+{% render 'partials/foot.liquid' %}
