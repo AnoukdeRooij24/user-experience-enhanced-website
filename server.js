@@ -54,6 +54,51 @@ app.get('/webinars', async function (request, response) {
     })
 })
 
+app.get("/webinars/:slug", async function (request, response) {
+    const slug = request.params.slug;
+  
+    // haal webinar ID op
+    const webinarID = await fetch("https://fdnd-agency.directus.app/items/avl_webinars?fields=id&filter[slug][_eq]=" + slug)
+    const webinarIDJSON = await webinarID.json();
+    const webID = webinarIDJSON.data[0].id;
+  
+    // haal alle data van het webinar op
+    const webinardetailResponse = await fetch(`https://fdnd-agency.directus.app/items/avl_webinars?filter[slug][_eq]=${slug}&fields=title,id,views,date,video,duration,resources.*.*,slug,thumbnail,transcript,description,categories.*.*,speakers.*.*`);
+    const webinardetailResponseJSON = await webinardetailResponse.json();
+  
+    // haal alle data van de comments op
+    const webinarComments = await fetch("https://fdnd-agency.directus.app/items/avl_comments?filter[webinar_id][_eq]=" + webID +"&sort`=-id")
+    const webinarCommentsJSON = await webinarComments.json();
+  
+    response.render("detail.liquid", {
+      webdetail: webinardetailResponseJSON.data[0],
+      comments: webinarCommentsJSON.data,
+    });
+  });
+
+  
+app.post("/webinars/:slug/:id", async function (request, response) {
+
+  // In request.body zitten alle formuliervelden die een `name` attribuut hebben in je HTML
+  console.log(request.body.comment)
+
+  // Via een fetch() naar Directus vullen we nieuwe gegevens in
+  await fetch(`https://fdnd-agency.directus.app/items/avl_comments`, {
+    method: "POST",
+    body: JSON.stringify({
+      webinar_id: request.params.id,
+      content: request.body.comment
+    }),
+    headers: {'Content-Type': 'application/json;charset=UTF-8'}
+    });  
+
+
+  // Redirect de gebruiker daarna naar een logische volgende stap
+  // Zie https://expressjs.com/en/5x/api.html#res.redirect over response.redirect()
+  response.redirect(303, `/webinars/${request.params.slug}`)
+})
+  
+
 app.set('port', process.env.PORT || 8000)
 app.listen(app.get('port'), function () {
   console.log(` http://localhost:${app.get('port')}/ `)
