@@ -37,7 +37,7 @@
 
     <h3>Ask a question</h3>
     <section class="q-en-a">
-            <form action="/webinars/{{ webdetail.slug }}/{{ webdetail.id }}" method="post">
+            <form action="/webinars/{{ webdetail.slug }}/{{ webdetail.id }}" method="post" data-enhanced="form-{{ webdetail.id }}">
                 <input type="text" name="comment" placeholder="Ask your question here..." />
                 <button type="submit" class="submit-button">Submit</button>
             </form>
@@ -46,7 +46,7 @@
 <h2>The speaker</h2>
     {% for speaker in webdetail.speakers %}
         <section class="speaker-detail">
-            <img class="speaker-picture" src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}">
+            <img class="speaker-picture" src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"     width="85px"    height="85px">
             <h3 class="speaker-name"> {{ speaker.avl_speakers_id.fullname }} </h3>
             <p class="speaker-job"> {{ speaker.avl_speakers_id.entitle }} </p>
         </section>
@@ -124,6 +124,8 @@ if ('fetch' in window && 'DOMParser' in window) {
     // Overschrijf ons formulier met de nieuwe HTML
     // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
     formButton.classList.remove("load-state");
+    
+    formButton.classList.add("succes-state");
 
 
     form.outerHTML = newState.outerHTML
