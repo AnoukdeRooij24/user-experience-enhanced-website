@@ -105,3 +105,6 @@ ul li {
   max-width: fit-content;
 }
 
+@view-transition {
+  navigation: auto;
+}
