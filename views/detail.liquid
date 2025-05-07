@@ -19,50 +19,56 @@
     {% endfor %}
 </section>
 
-<h2>Description</h2>
-    <details class="description-detail">
-        <summary>Read description</summary>
-        <div>
-            <p> {{ webdetail.description }} </p>
-        </div>
-    </details>
+<section class="algemeen-description">
+    <h2>Description</h2>
+        <details class="description-detail">
+            <summary>Read description</summary>
+            <div>
+                <p> {{ webdetail.description }} </p>
+            </div>
+        </details>
+</section>
 
-<h2>Q & A</h2>
-    <h3>Comments</h3>
-    <section class="comments-detail">
-        {% for comment in comments %} 
-                <p class="comment"> {{  comment.content }}</p>
-        {% endfor %}  
-    </section>
-
-    <h3>Ask a question</h3>
-    <section class="q-en-a">
-            <form action="/webinars/{{ webdetail.slug }}/{{ webdetail.id }}" method="post" data-enhanced="form-{{ webdetail.id }}">
-                <input type="text" name="comment" placeholder="Ask your question here..." />
-                <button type="submit" class="submit-button">Submit</button>
-            </form>
-    </section>
-
-<h2>The speaker</h2>
-    {% for speaker in webdetail.speakers %}
-        <section class="speaker-detail">
-            <img class="speaker-picture" src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"     width="85px"    height="85px">
-            <h3 class="speaker-name"> {{ speaker.avl_speakers_id.fullname }} </h3>
-            <p class="speaker-job"> {{ speaker.avl_speakers_id.entitle }} </p>
+<section class="geheel-q-en-a">
+    <h2>Q & A</h2>
+        <h3>Comments</h3>
+        <section class="comments-detail">
+            {% for comment in comments %} 
+                    <p class="comment"> {{  comment.content }}</p>
+            {% endfor %}  
         </section>
-    {% endfor %}
 
+        <h3>Ask a question</h3>
+        <section class="q-en-a">
+                <form action="/webinars/{{ webdetail.slug }}/{{ webdetail.id }}" method="post" data-enhanced="form-{{ webdetail.id }}">
+                    <input type="text" name="comment" placeholder="Ask your question here..." />
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+        </section>
+</section>
 
-<h2> Transcript </h2>
-    <details class="transcript-detail">
-        <summary>Read transcript</summary>
-        <div>
-            {% for transcript in webdetail.transcript %}
-                <p> {{ webdetail.transcript }} </p>
-                {% endfor %}
-        </div>
-    </details>
+<section class="geheel-speaker">
+    <h2>The speaker</h2>
+        {% for speaker in webdetail.speakers %}
+            <section class="speaker-detail">
+                <img class="speaker-picture" src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"     width="85px"    height="85px">
+                <h3 class="speaker-name"> {{ speaker.avl_speakers_id.fullname }} </h3>
+                <p class="speaker-job"> {{ speaker.avl_speakers_id.entitle }} </p>
+            </section>
+        {% endfor %}
+</section>
 
+<section class="geheel-transcript">
+    <h2> Transcript </h2>
+        <details class="transcript-detail">
+            <summary>Read transcript</summary>
+            <div>
+                {% for transcript in webdetail.transcript %}
+                    <p> {{ webdetail.transcript }} </p>
+                    {% endfor %}
+            </div>
+        </details>
+</section>
 
 {% render 'partials/foot.liquid' %}
 
