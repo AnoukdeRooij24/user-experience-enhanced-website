@@ -1,3 +1,4 @@
+// MARK: Instellingen
 // npm package Express importeren (npm install)
 import express from 'express'
 import { Liquid } from 'liquidjs';
@@ -43,6 +44,7 @@ app.get('/', async function (request, response) {
     })
 })
 
+// MARK: Webinars
 app.get('/webinars', async function (request, response) {
     const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
     const webinarUrlFilters = "?fields=title,thumbnail,date,slug,speakers.*.*,categories.avl_categories_id.*,categories.avl_categories_name.*";
@@ -72,6 +74,7 @@ app.get('/webinars', async function (request, response) {
     })
 })
 
+// MARK: Detail page
 app.get("/webinars/:slug", async function (request, response) {
     const slug = request.params.slug;
   
@@ -94,9 +97,8 @@ app.get("/webinars/:slug", async function (request, response) {
     });
   });
 
-
+// MARK: Post detail page
 app.post("/webinars/:slug/:id", async function (request, response) {
-
   // In request.body zitten alle formuliervelden die een `name` attribuut hebben in je HTML
   console.log(request.body.comment)
 
@@ -115,8 +117,13 @@ app.post("/webinars/:slug/:id", async function (request, response) {
   // Zie https://expressjs.com/en/5x/api.html#res.redirect over response.redirect()
   response.redirect(303, `/webinars/${request.params.slug}`)
 })
-  
 
+// MARK: 404
+app.get('/404', async function (request, response) {
+    response.render('partials/404.liquid')
+  })
+
+  // Local host instellen
 app.set('port', process.env.PORT || 8000)
 app.listen(app.get('port'), function () {
   console.log(` http://localhost:${app.get('port')}/ `)

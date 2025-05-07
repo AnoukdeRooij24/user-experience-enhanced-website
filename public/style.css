@@ -146,10 +146,14 @@ nav {
 
 .category-filter {
     font-family: "Lato", 'Courier New', Courier, monospace;
-    font-size: var(--font-size-sm);
+    font-size: 0.87rem;
 	border: solid .1em currentcolor;
 	align-items: center;
     padding: .5em;
+    background-color: white;
+    width: 10em;
+    text-transform: capitalize ;
+
 }
 
 /* algemene styling eraf halen */
@@ -163,7 +167,7 @@ select,
 	content:"";
 	height: .5em;
 	width: .5em;
-	background-color: currentcolor;
+	background-color: var(--dark-green);
 	clip-path: polygon( 0 0, 100% 0, 50% 100% );
 	transition: .3s;
 }
@@ -199,6 +203,18 @@ option:hover,
 option:focus-visible {
 	color:white;
 	background-color: var(--dark-green);
+}
+
+/* button om te filteren */
+.filter-enter {
+    font-family: "Lato", 'Courier New', Courier, monospace;
+    font-size: var(--font-size-md);
+    color: #fff;
+    border: none;
+    padding: .4em .7em;
+    border-radius: var(--border-radius-sm);
+    background-color: var(--dark-green);
+    cursor: pointer;
 }
 
 
@@ -265,6 +281,15 @@ option:focus-visible {
     @media (width > 36em) {
         padding: 1em 3em;
     }
+
+    .partner-picture {
+        background-color: lightgrey;
+        max-width: 25em;
+        height: 25em;
+        border-radius: var(--border-radius-sm);
+        align-content: center;
+        justify-items: center;
+    }
 }
 
 .webinars-index {
@@ -273,13 +298,28 @@ option:focus-visible {
     
     @media (width > 36em) {
         padding: 1em 3em;
-    }}
+    }
+
+    .laatste-webinar {
+        background-color: lightgrey;
+        max-width: 25em;
+        height: 25em;
+        border-radius: var(--border-radius-sm);
+    }
+}
 
 .contourings-index {
     padding: 1em .5em;
     
     @media (width > 36em) {
         padding: 1em 3em;
+    }
+
+    .laatste-contouring {
+        background-color: lightgrey;
+        max-width: 25em;
+        height: 25em;
+        border-radius: var(--border-radius-sm);
     }
 }
 
@@ -289,7 +329,15 @@ option:focus-visible {
     
     @media (width > 36em) {
         padding: 1em 3em;
-    }}
+    }
+
+    .laatste-article {
+        background-color: lightgrey;
+        max-width: 25em;
+        height: 25em;
+        border-radius: var(--border-radius-sm);
+    }
+}
 
 
 
@@ -310,6 +358,7 @@ option:focus-visible {
 
 .webinar-item {
     border-radius: var(--border-radius-md);
+    max-width: 20em ;
 
     .tumbnail-webinar {
         width: 100%;
@@ -329,7 +378,7 @@ option:focus-visible {
     }
 
     .date-webinar {
-        color: var(--light-green);
+        color: var(--dark-green);
         margin: .4em;
     }
 
@@ -343,8 +392,8 @@ option:focus-visible {
         text-transform: capitalize;
         margin: .4em;
     }
-
 }
+
 
 
 
@@ -579,3 +628,26 @@ footer {
         flex-direction: row;
     }
 } 
+
+
+
+
+
+/*      MARK: 404     */
+.h1404 {
+    font-size: var(--font-size-6xl);
+    justify-self: center;
+    padding-left: 5%;
+}
+
+.h2404 {
+    font-size: var(--font-size-6xl);
+    justify-self: center;
+    padding-left: 5%;
+}
+
+.p404 {
+    font-size: var(--font-size-lg);
+    justify-self: center;
+    padding-left: 5%;
+}
