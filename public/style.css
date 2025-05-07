@@ -14,6 +14,7 @@ header {
 
         @media (width > 40em) {
             transform: translateY(75%);
+            padding-left: 2em;
         }
     }
 
@@ -24,6 +25,7 @@ header {
 
         @media (width > 40em) {
             transform: translateY(75%);
+            padding-left: 1em;
         }
     }
 
@@ -58,6 +60,16 @@ nav {
 
 
 /*      MARK: SEARCH BAR     */
+.search-bar-section {
+    padding-top: .5em;
+    padding-bottom: 1em;
+
+    @media (width > 36em) {
+        padding-top: 1em;
+        padding-bottom: 2em;
+    }
+}
+
 .search-bar {
     position: relative;
     justify-self: center;
@@ -99,25 +111,6 @@ nav {
     background-color: #fff;
 }
 
-.category-list {
-    display: flex;
-    flex-wrap: wrap;
-
-    .category-element {
-        background-color: var(--light-green);
-        margin: .5em;
-        padding: var(--padding-label);
-        border-radius: var(--border-radius-sm);
-        text-transform: capitalize;
-    }
-
-    :hover {
-        background-color: var(--dark-green);
-        color: var(--light-text);
-        transition-duration: .1s;
-    }
-}
-
 @media (width > 36em) {
     .search-bar {
         max-width: 500px;
@@ -142,24 +135,99 @@ nav {
 
 
 
+/*      MARK: CATEGORY FILTER        */
+
+.category-select-label {
+    font-family: "Lato", 'Courier New', Courier, monospace;
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    margin: .7em;
+}
+
+.category-filter {
+    font-family: "Lato", 'Courier New', Courier, monospace;
+    font-size: var(--font-size-sm);
+	border: solid .1em currentcolor;
+	align-items: center;
+    padding: .5em;
+}
+
+/* algemene styling eraf halen */
+select,
+::picker(select){
+	appearance: base-select;
+}
+
+/* pijltje */
+::picker-icon {
+	content:"";
+	height: .5em;
+	width: .5em;
+	background-color: currentcolor;
+	clip-path: polygon( 0 0, 100% 0, 50% 100% );
+	transition: .3s;
+}
+
+/* pijltje als hij opengeklapt is */
+select:open::picker-icon {
+	rotate:x 180deg;
+}
+
+/* de border kleuren */
+::picker(select) {
+	border:solid .15em var(--dark-green);
+	border-radius:.5em;
+	background-color: var(--dark-green);
+	margin-block-start:.5em;
+}
+
+/* om de lijntjes ertussen te doen */
+select:open::picker(select) {
+	display:grid;
+	gap:.1em
+}
+
+/* de opties */
+option {
+	color: var(--dark-green);
+	background-color:white;
+	padding: .6em;
+}
+
+/* hover en focus */
+option:hover,
+option:focus-visible {
+	color:white;
+	background-color: var(--dark-green);
+}
+
+
+
+
+
+
 /*      MARK: INDEX      */
 .home {
     display: flex;
     flex-direction: column;
     justify-self: center;
-    width: 80%;
-    gap: 2em;
+    width: 100%;
+    gap: 1em;
 }
 
 .about-us {
     background-color: var(--light-green);
-    border-radius: var(--border-radius-md);
-    padding: 1em;
+    padding: 1em .5em;
+    display: grid;
+    grid-template-areas:
+    "avl"   "sar"
+    "text";
 
     .home-logo-avl {
         height: 3em;
         width: 150px;
         margin: .3em;
+        grid-area: "avl";
 
         @media (width > 36em) {
             height: 9em;
@@ -171,31 +239,57 @@ nav {
         height: 4em;
         width:170px;
         margin: .3em;
+        grid-area: "sar";
 
         @media (width > 36em) {
             height: 10em;
             width:448px;
         }
     }
+
+    .about-us-tekst {
+        grid-area: "text";
+    }
+
+    @media (width > 36em) {
+        padding: 1em 3em;
+        grid-template-areas:
+        "avl" "tekst"
+        "sar" "tekst"
+    }
+}
+
+.partners {
+    padding: 1em .5em;
+
+    @media (width > 36em) {
+        padding: 1em 3em;
+    }
 }
 
 .webinars-index {
     background-color: var(--light-green);
-    border-radius: var(--border-radius-md);
-    padding: 1em;
-}
+    padding: 1em .5em;
+    
+    @media (width > 36em) {
+        padding: 1em 3em;
+    }}
 
 .contourings-index {
-    background-color: var(--light-green);
-    border-radius: var(--border-radius-md);
-    padding: 1em;
+    padding: 1em .5em;
+    
+    @media (width > 36em) {
+        padding: 1em 3em;
+    }
 }
 
 .articles-index{
     background-color: var(--light-green);
-    border-radius: var(--border-radius-md);
-    padding: 1em;
-}
+    padding: 1em .5em;
+    
+    @media (width > 36em) {
+        padding: 1em 3em;
+    }}
 
 
 

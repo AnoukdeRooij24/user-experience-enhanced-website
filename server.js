@@ -45,12 +45,30 @@ app.get('/', async function (request, response) {
 
 app.get('/webinars', async function (request, response) {
     const webinarUrl = "https://fdnd-agency.directus.app/items/avl_webinars";
-    const webinarUrlFilters = "?fields=title,thumbnail,date,slug,categories.*.*,speakers.*.*";
+    const webinarUrlFilters = "?fields=title,thumbnail,date,slug,speakers.*.*,categories.avl_categories_id.*,categories.avl_categories_name.*";
     const webinarsResponse = await fetch(webinarUrl + webinarUrlFilters);
     const webinarsResponseJSON = await webinarsResponse.json();
   
+    const categoryFilter = request.query.category || "";
+    const categoriesUrl = "https://fdnd-agency.directus.app/items/avl_categories"; 
+    const categoriesResponse = await fetch(categoriesUrl);
+    const categoriesResponseJSON = await categoriesResponse.json();
+
+    let fliteredWebinars = webinarsResponseJSON.data;
+
+    // filter aanmaken
+    if (categoryFilter) {
+        fliteredWebinars = fliteredWebinars.filter(webinar =>
+            webinar.categories.some(category => category.avl_categories_id.name === categoryFilter)
+        );
+    }
+
+    console.log(categoriesResponseJSON)
+
     response.render('webinars.liquid',{
-        webinars: webinarsResponseJSON.data 
+        webinars: fliteredWebinars,
+        categories: categoriesResponseJSON.data,
+        selectedCategory: categoryFilter,
     })
 })
 
@@ -76,7 +94,7 @@ app.get("/webinars/:slug", async function (request, response) {
     });
   });
 
-  
+
 app.post("/webinars/:slug/:id", async function (request, response) {
 
   // In request.body zitten alle formuliervelden die een `name` attribuut hebben in je HTML
