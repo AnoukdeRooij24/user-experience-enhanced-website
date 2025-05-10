@@ -639,6 +639,7 @@ video {
     background-repeat: no-repeat;
     background-position: center;
     color: transparent;
+    /* animation: rotation 1s linear infinite */
 }
 
 /* .succes-state {
