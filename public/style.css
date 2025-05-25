@@ -633,13 +633,18 @@ video {
 
 /*      MARK: STATES    */
 
+/* 
+    Perceived Performance:
+    Door een loading state mee te geven aan een button, weet de gerbuiker dat er iets gaande is. Zo hoeft de gebruiker niet 100x op een 
+    knopje te drukken zonder dat er iets gebeurd. Volgens de Cheat de UX is dit de 'System is thinking 2 - 5s'. Hierop pas je een loading state toe.
+*/
+
 .load-state {
     background-color: var(--light-green);
     background-image:url(assets/loading-icon.svg);
     background-repeat: no-repeat;
     background-position: center;
     color: transparent;
-    /* animation: rotation 1s linear infinite */
 }
 
 /* .succes-state {

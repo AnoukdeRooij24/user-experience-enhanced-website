@@ -18,10 +18,17 @@
             <div class="about-us-logos">
                 <img loading="lazy" class="home-logo-avl" src="/assets/AVL-Logo-white.svg" alt="Antoni van Leeuwenhoek"  >
 
+            <!-- 
+                Responsive Images:
+                Door het picuture element te gebruiken, kan de server zelf bepalen welk type afbeelding het beste is. 
+                Afhankelijk van; de internet snelheid, het device en de grootte van het scherm.
+                Met de srcset in de source geven we aan de browser aan dat er verschillende formaten afbeeldingen zijn waar die uit kan kiezen.
+            -->
+
                 <picture class="home-logo-sar">
                     <source type="image/avif" srcset="/assets/kemenkessardjito.avif">
                     <source type="image/webp" srcset="/assets/kemenkessardjito.webp">
-                    <img loading="lazy" class="home-logo-sar" src="/assets/kemenkessardjito.png" alt="Sardjito" >
+                    <img loading="lazy" class="home-logo-sar" srcset="/assets/kemenkessardjito.png" alt="Sardjito" >
                 </picture> 
             </div>
             <p class="about-us-tekst">

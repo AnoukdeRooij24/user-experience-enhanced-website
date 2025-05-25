@@ -51,6 +51,12 @@
     <h2>The speaker</h2>
         {% for speaker in webdetail.speakers %}
             <section class="speaker-detail">
+                <!--
+                    Layout shift:
+                    Door de afbeeldingen in de liquid een afmeting mee te geven voorkom je een layout shift. Dit betekend dat de browser de ruimte
+                    die de afbeelding 'waarschijnlijk' in gaat nemen al mee rekent met het inladen van de website, voordat de afbeelding zelf
+                    is ingeladen.
+                -->
                 <img class="speaker-picture" src="https://fdnd-agency.directus.app/assets/{{ speaker.avl_speakers_id.profile_picture }}"     width="85px"    height="85px">
                 <h3 class="speaker-name"> {{ speaker.avl_speakers_id.fullname }} </h3>
                 <p class="speaker-job"> {{ speaker.avl_speakers_id.entitle }} </p>
